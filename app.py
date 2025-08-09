@@ -8,6 +8,7 @@ st.set_page_config(
 
 def main_page():
     st.title("UK Checks")
+    st.write("To be implemented...")
 
 main_page = st.Page(main_page, title="Home page", icon="🏠") 
 officer_page = st.Page("pages/1_officer.py", title="Officers", icon="👤")
@@ -23,5 +24,3 @@ pages = {
 
 pg = st.navigation(pages)
 pg.run()
-
-st.write("To be implemented...")
