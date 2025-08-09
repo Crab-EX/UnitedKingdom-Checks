@@ -1,8 +1,10 @@
 import time
 from functools import wraps
+import streamlit as st
 
 import requests
 
+company_house_api_key = st.secrets["COMPANY_HOUSE_API_KEY"]
 
 # Simple rate limiter
 def rate_limited(max_calls, period):
@@ -35,3 +37,15 @@ def rate_limited(max_calls, period):
         return wrapper
 
     return decorator
+
+@rate_limited(1, 1)
+def get_company_from_company_house(RegistrationNumber: str) -> dict:
+    
+    url = f"https://api.company-information.service.gov.uk/company/{RegistrationNumber}"
+
+    response = requests.get(url, auth=(company_house_api_key, ""), verify=False)
+    response.raise_for_status()
+
+    data = response.json()
+
+    return data
