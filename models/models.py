@@ -3,6 +3,16 @@ from typing import Dict, List, Literal, Optional, Union
 
 from pydantic import BaseModel, constr, field_validator
 
+class Person(BaseModel):
+    FirstName: Optional[str] = None
+    MiddleNames: Optional[str] = None
+    LastName: str
+    Nationality: Optional[str] = None
+    CountryOfResidence: Optional[str] = None
+    DateOfBirth: Optional[str] = None
+    Roles: Optional[List[str]] = None
+
+
 class Company(BaseModel):
     CompanyName: str
     CompanyNumber: str
@@ -17,3 +27,4 @@ class Company(BaseModel):
     DateOfIncorporation: Optional[str] = None
     InsolvencyStatus: Optional[bool] = None
     Charges: Optional[bool] = None  
+    Persons: Optional[List[Person]] = None
